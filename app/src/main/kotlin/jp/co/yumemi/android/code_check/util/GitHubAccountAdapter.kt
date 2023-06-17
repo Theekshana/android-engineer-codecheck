@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import jp.co.yumemi.android.code_check.R
-import jp.co.yumemi.android.code_check.item
+import jp.co.yumemi.android.code_check.model.GitHubAccounts
 import jp.co.yumemi.android.code_check.views.diff_util
 
 /**
@@ -15,12 +15,12 @@ import jp.co.yumemi.android.code_check.views.diff_util
  */
 class GitHubAccountAdapter(
     private val itemClickListener: OnItemClickListener,
-) : ListAdapter<item, GitHubAccountAdapter.ViewHolder>(diff_util) {
+) : ListAdapter<GitHubAccounts, GitHubAccountAdapter.ViewHolder>(diff_util) {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     interface OnItemClickListener {
-        fun itemClick(item: item)
+        fun itemClick(item: GitHubAccounts)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
