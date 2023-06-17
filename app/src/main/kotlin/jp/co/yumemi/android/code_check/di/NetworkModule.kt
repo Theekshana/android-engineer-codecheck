@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import jp.co.yumemi.android.code_check.constants.Constants
 import jp.co.yumemi.android.code_check.network.GithubApiService
+import jp.co.yumemi.android.code_check.repository.GithubRepository
 import okhttp3.OkHttpClient
 import retrofit2.Converter
 import retrofit2.Retrofit
@@ -75,6 +76,17 @@ object NetworkModule {
     @Provides
     fun provideGithubApiService(retrofit: Retrofit): GithubApiService {
         return retrofit.create(GithubApiService::class.java)
+    }
+
+    /**
+     *  Provides the GithubRepository instance.
+     *
+     *  @param githubApiService The DogApiService instance for API calls.
+     */
+    @Singleton
+    @Provides
+    fun provideGithubRepository(githubApiService: GithubApiService): GithubRepository {
+        return GithubRepository(githubApiService)
     }
 
 }
