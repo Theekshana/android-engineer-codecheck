@@ -29,7 +29,7 @@ class SearchRepositoryViewModel @Inject constructor(
             val serverResponse: ServerResponse? =
                 githubRepository.getGitHutAccountsFromDataSource(q)
 
-            //_gitHubList.value = serverResponse?.items
+            _gitHubList.value = serverResponse?.items
         }
 
     }
