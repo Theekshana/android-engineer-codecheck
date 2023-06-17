@@ -7,8 +7,8 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class GithubRepository @Inject constructor(
-    private val githubApiService: GithubApiService) {
-
+    private val githubApiService: GithubApiService
+) {
     /**
      * Get GitHub account information from the data source.
      * @param q The query string to search for repositories.

@@ -1,6 +1,5 @@
 package jp.co.yumemi.android.code_check.views
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,18 +12,17 @@ import jp.co.yumemi.android.code_check.databinding.FragmentOneBinding
 import jp.co.yumemi.android.code_check.model.GitHubAccounts
 import jp.co.yumemi.android.code_check.util.GitHubAccountAdapter
 
-
 class RepositorySearchFragment : Fragment() {
 
-    lateinit var binding: FragmentOneBinding
-    lateinit var viewModel: SearchRepositoryViewModel
-    lateinit var gitHubAccountAdapter: GitHubAccountAdapter
+    private lateinit var binding: FragmentOneBinding
+    private lateinit var viewModel: SearchRepositoryViewModel
+    private lateinit var gitHubAccountAdapter: GitHubAccountAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentOneBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(requireActivity())[SearchRepositoryViewModel::class.java]
         binding.githubVM = viewModel
@@ -40,12 +38,13 @@ class RepositorySearchFragment : Fragment() {
         gitHubAccountAdapter =
             GitHubAccountAdapter(object : GitHubAccountAdapter.OnItemClickListener {
                 override fun itemClick(item: GitHubAccounts) {
-                    gotoRepositoryFragment(item)
+                    navigateToRepositoryFragment(item)
                 }
             })
 
         binding.recyclerView.adapter = gitHubAccountAdapter
 
+        //Perform a search using search input text
         binding.searchInputText
             .setOnEditorActionListener { editText, action, _ ->
                 if (action == EditorInfo.IME_ACTION_SEARCH) {
@@ -56,18 +55,20 @@ class RepositorySearchFragment : Fragment() {
                 }
                 return@setOnEditorActionListener false
             }
-
+        //Sets up the changes in the gitHubList
         viewModel.gitHubList.observe(requireActivity()) {
             gitHubAccountAdapter.submitList(it)
-
         }
 
     }
 
-    fun gotoRepositoryFragment(item: GitHubAccounts) {
+    //Navigate to the RepositoryFragment
+    fun navigateToRepositoryFragment(item: GitHubAccounts) {
         val action =
-            RepositorySearchFragmentDirections.actionRepositoriesFragmentToRepositoryFragment(item)
-        findNavController().navigate(action)
+            RepositorySearchFragmentDirections
+                .actionRepositoriesFragmentToRepositoryFragment(item)
+        findNavController()
+            .navigate(action)
     }
 
 }

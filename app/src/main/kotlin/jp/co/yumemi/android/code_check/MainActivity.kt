@@ -5,12 +5,8 @@ package jp.co.yumemi.android.code_check
 
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(R.layout.activity_top) {
+class MainActivity : AppCompatActivity(R.layout.activity_top)
 
-    companion object {
-        lateinit var lastSearchDate: Date
-    }
-}
+

@@ -16,6 +16,7 @@ class SearchRepositoryViewModel @Inject constructor(
     private val githubRepository: GithubRepository
 ) : ViewModel() {
 
+    //MutableLiveData containing a list of GitHubAccounts.
     private val _gitHubList = MutableLiveData<List<GitHubAccounts>>(null)
     val gitHubList: LiveData<List<GitHubAccounts>> get() = _gitHubList
 

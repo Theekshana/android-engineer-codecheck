@@ -3,6 +3,7 @@
  */
 package jp.co.yumemi.android.code_check.views
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -18,21 +19,20 @@ class RepositoryDetailsFragment : Fragment(R.layout.fragment_two) {
     private var binding: FragmentTwoBinding? = null
     private val _binding get() = binding!!
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        Log.d("検索した日時", lastSearchDate.toString())
-
         binding = FragmentTwoBinding.bind(view)
 
-        var item = args.item
+        val listItem = args.item
 
-        _binding.ownerIconView.load(item.ownerIconUrl);
-        _binding.nameView.text = item.name;
-        _binding.languageView.text = item.language;
-        _binding.starsView.text = "${item.stargazersCount} stars";
-        _binding.watchersView.text = "${item.watchersCount} watchers";
-        _binding.forksView.text = "${item.forksCount} forks";
-        _binding.openIssuesView.text = "${item.openIssuesCount} open issues";
+        _binding.ownerIconView.load(listItem.ownerIconUrl)
+        _binding.nameView.text = listItem.name
+        _binding.languageView.text = listItem.language
+        _binding.starsView.text = "${listItem.stargazersCount} stars"
+        _binding.watchersView.text = "${listItem.watchersCount} watchers"
+        _binding.forksView.text = "${listItem.forksCount} forks"
+        _binding.openIssuesView.text = "${listItem.openIssuesCount} open issues"
     }
 }
