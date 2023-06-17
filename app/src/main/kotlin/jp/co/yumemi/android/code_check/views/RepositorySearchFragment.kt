@@ -1,6 +1,3 @@
-/*
- * Copyright © 2021 YUMEMI Inc. All rights reserved.
- */
 package jp.co.yumemi.android.code_check.views
 
 import android.os.Bundle
@@ -8,73 +5,70 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.*
-import jp.co.yumemi.android.code_check.OneViewModel
-import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.databinding.FragmentOneBinding
 import jp.co.yumemi.android.code_check.model.GitHubAccounts
 import jp.co.yumemi.android.code_check.util.GitHubAccountAdapter
 
+class RepositorySearchFragment : Fragment() {
 
-class OneFragment: Fragment(R.layout.fragment_one){
+    private lateinit var binding: FragmentOneBinding
+    private lateinit var viewModel: SearchRepositoryViewModel
+    private lateinit var gitHubAccountAdapter: GitHubAccountAdapter
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-    {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentOneBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(requireActivity())[SearchRepositoryViewModel::class.java]
+        binding.githubVM = viewModel
+        binding.lifecycleOwner = this
+
+        return binding.root
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val _binding= FragmentOneBinding.bind(view)
+        gitHubAccountAdapter =
+            GitHubAccountAdapter(object : GitHubAccountAdapter.OnItemClickListener {
+                override fun itemClick(item: GitHubAccounts) {
+                    navigateToRepositoryFragment(item)
+                }
+            })
 
-        val _viewModel= OneViewModel(context!!)
+        binding.recyclerView.adapter = gitHubAccountAdapter
 
-        val _layoutManager= LinearLayoutManager(context!!)
-        val _dividerItemDecoration=
-            DividerItemDecoration(context!!, _layoutManager.orientation)
-        val _adapter= GitHubAccountAdapter(object : GitHubAccountAdapter.OnItemClickListener {
-            override fun itemClick(item: GitHubAccounts){
-                gotoRepositoryFragment(item)
-            }
-        })
-
-        _binding.searchInputText
-            .setOnEditorActionListener{ editText, action, _ ->
-                if (action== EditorInfo.IME_ACTION_SEARCH){
+        //Perform a search using search input text
+        binding.searchInputText
+            .setOnEditorActionListener { editText, action, _ ->
+                if (action == EditorInfo.IME_ACTION_SEARCH) {
                     editText.text.toString().let {
-                        _viewModel.searchResults(it).apply{
-                            _adapter.submitList(this)
-                        }
+                        viewModel.searchGithubRepository(it)
                     }
                     return@setOnEditorActionListener true
                 }
                 return@setOnEditorActionListener false
             }
-
-        _binding.recyclerView.also{
-            it.layoutManager= _layoutManager
-            it.addItemDecoration(_dividerItemDecoration)
-            it.adapter= _adapter
+        //Sets up the changes in the gitHubList
+        viewModel.gitHubList.observe(requireActivity()) {
+            gitHubAccountAdapter.submitList(it)
         }
+
     }
 
-    fun gotoRepositoryFragment(item: GitHubAccounts)
-    {
-        val _action=
-            OneFragmentDirections.actionRepositoriesFragmentToRepositoryFragment(item = item)
-        findNavController().navigate(_action)
-    }
-}
-
-val diff_util= object: DiffUtil.ItemCallback<GitHubAccounts>(){
-    override fun areItemsTheSame(oldItem: GitHubAccounts, newItem: GitHubAccounts): Boolean
-    {
-        return oldItem.name== newItem.name
-    }
-
-    override fun areContentsTheSame(oldItem: GitHubAccounts, newItem: GitHubAccounts): Boolean
-    {
-        return oldItem== newItem
+    //Navigate to the RepositoryFragment
+    fun navigateToRepositoryFragment(item: GitHubAccounts) {
+        val action =
+            RepositorySearchFragmentDirections
+                .actionRepositoriesFragmentToRepositoryFragment(item)
+        findNavController()
+            .navigate(action)
     }
 
 }

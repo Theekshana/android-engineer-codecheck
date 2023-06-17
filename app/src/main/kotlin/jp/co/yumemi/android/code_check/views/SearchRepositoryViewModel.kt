@@ -13,9 +13,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchRepositoryViewModel @Inject constructor(
-    val githubRepository: GithubRepository
+    private val githubRepository: GithubRepository
 ) : ViewModel() {
 
+    //MutableLiveData containing a list of GitHubAccounts.
     private val _gitHubList = MutableLiveData<List<GitHubAccounts>>(null)
     val gitHubList: LiveData<List<GitHubAccounts>> get() = _gitHubList
 

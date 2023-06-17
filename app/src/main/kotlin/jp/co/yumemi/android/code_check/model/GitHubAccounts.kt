@@ -8,11 +8,11 @@ import kotlinx.parcelize.Parcelize
  */
 @Parcelize
 data class GitHubAccounts(
-    val name: String,
-    val ownerIconUrl: String,
-    val language: String,
-    val stargazersCount: Long,
-    val watchersCount: Long,
-    val forksCount: Long,
-    val openIssuesCount: Long,
+    val name: String?,
+    val ownerIconUrl: String?,
+    val language: String?,
+    val stargazersCount: Long?,
+    val watchersCount: Long?,
+    val forksCount: Long?,
+    val openIssuesCount: Long?,
 ) : Parcelable
