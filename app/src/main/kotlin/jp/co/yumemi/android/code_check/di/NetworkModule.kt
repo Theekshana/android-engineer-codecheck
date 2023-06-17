@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import jp.co.yumemi.android.code_check.constants.Constants
+import jp.co.yumemi.android.code_check.network.GithubApiService
 import okhttp3.OkHttpClient
 import retrofit2.Converter
 import retrofit2.Retrofit
@@ -63,6 +64,17 @@ object NetworkModule {
             .client(okHttpClient)
 
         return retrofit.build()
+    }
+
+    /**
+     * Provides the GithubApiService interface implementation.
+     *
+     * @param retrofit The Retrofit instance for network requests.
+     */
+    @Singleton
+    @Provides
+    fun provideGithubApiService(retrofit: Retrofit): GithubApiService {
+        return retrofit.create(GithubApiService::class.java)
     }
 
 }
