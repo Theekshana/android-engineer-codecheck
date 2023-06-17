@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchRepositoryViewModel @Inject constructor(
-    val githubRepository: GithubRepository
+    private val githubRepository: GithubRepository
 ) : ViewModel() {
 
     private val _gitHubList = MutableLiveData<List<GitHubAccounts>>(null)
