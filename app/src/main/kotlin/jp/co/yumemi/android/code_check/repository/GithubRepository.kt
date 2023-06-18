@@ -6,6 +6,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+/**
+ * Repository class responsible for retrieving GitHub account information from the data source.
+ */
 class GithubRepository @Inject constructor(
     private val githubApiService: GithubApiService
 ) {

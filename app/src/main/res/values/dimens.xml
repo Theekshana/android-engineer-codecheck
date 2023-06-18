@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size_large">20sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="padding_vertical">16dp</dimen>
+    <dimen name="button_height">48dp</dimen>
+    <dimen name="margin_bottom">8dp</dimen>
+    <dimen name="icon_size_medium">24dp</dimen>
+    <dimen name="layout_margin">16dp</dimen>
+    <dimen name="layout_margin_small">12dp</dimen>
+    <dimen name="layout_marginTop">32dp</dimen>
+    <dimen name="layout_marginEnd">24dp</dimen>
+    <dimen name="layout_marginStart">24dp</dimen>
+</resources>

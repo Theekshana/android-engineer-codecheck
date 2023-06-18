@@ -12,6 +12,9 @@ import jp.co.yumemi.android.code_check.databinding.FragmentOneBinding
 import jp.co.yumemi.android.code_check.model.GitHubAccounts
 import jp.co.yumemi.android.code_check.util.GitHubAccountAdapter
 
+/**
+ * Fragment for searching and displaying GitHub repositories.
+ */
 class RepositorySearchFragment : Fragment() {
 
     private lateinit var binding: FragmentOneBinding

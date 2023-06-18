@@ -15,7 +15,7 @@ import jp.co.yumemi.android.code_check.model.GitHubAccounts
  */
 class GitHubAccountAdapter(
     private val itemClickListener: OnItemClickListener,
-) : ListAdapter<GitHubAccounts, GitHubAccountAdapter.ViewHolder>(itemCallback) {
+) : ListAdapter<GitHubAccounts, GitHubAccountAdapter.ViewHolder>(diff_util) {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
@@ -33,7 +33,6 @@ class GitHubAccountAdapter(
         val currentItem = getItem(position)
         (holder.itemView.findViewById<View>(R.id.repositoryNameView) as TextView).text =
             currentItem.name
-
         holder.itemView.setOnClickListener {
             itemClickListener.itemClick(currentItem)
         }
@@ -41,7 +40,7 @@ class GitHubAccountAdapter(
 
 }
 
-val itemCallback = object : DiffUtil.ItemCallback<GitHubAccounts>() {
+val diff_util = object : DiffUtil.ItemCallback<GitHubAccounts>() {
     override fun areItemsTheSame(oldItem: GitHubAccounts, newItem: GitHubAccounts): Boolean {
         return oldItem.name == newItem.name
     }

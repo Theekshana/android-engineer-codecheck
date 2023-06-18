@@ -8,4 +8,10 @@
     <string name="_38530_watchers">38530 watchers</string>
     <string name="_4675_forks">4675 forks</string>
     <string name="_131_open_issues">131 open issues</string>
+    <string name="nameview">nameView</string>
+    <string name="languageview">languageView</string>
+    <string name="startsview">startsView</string>
+    <string name="forksview">forksView</string>
+    <string name="watchersview">watchersView</string>
+    <string name="openIssuesView">openIssuesView</string>
 </resources>
