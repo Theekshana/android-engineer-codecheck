@@ -10,6 +10,6 @@ import dagger.hilt.android.AndroidEntryPoint
  * The main activity of the application.
  */
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(R.layout.activity_top)
+class MainActivity : AppCompatActivity(R.layout.activity_main)
 
 

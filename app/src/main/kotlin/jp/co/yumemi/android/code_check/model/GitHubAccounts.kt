@@ -9,6 +9,7 @@ import kotlinx.parcelize.Parcelize
  */
 @Parcelize
 data class GitHubAccounts(
+    @SerializedName("full_name")
     val name: String?,
     val owner: Owner?,
     @SerializedName("language")

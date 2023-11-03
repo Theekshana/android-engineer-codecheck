@@ -14,4 +14,11 @@
     <string name="forksview">forksView</string>
     <string name="watchersview">watchersView</string>
     <string name="openIssuesView">openIssuesView</string>
+
+    <string name="no_internet_connection">No Internet Connection</string>
+    <string name="make_sure_internet">Make sure WI-FI or mobile data is turned \non, then try again</string>
+    <string name="retry">Retry</string>
+    <string name="todo">TODO</string>
+    <string name="user_input_invalid">User Input Invalid</string>
+    <string name="ok">OK</string>
 </resources>
