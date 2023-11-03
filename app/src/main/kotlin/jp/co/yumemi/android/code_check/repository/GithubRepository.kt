@@ -4,6 +4,7 @@ import jp.co.yumemi.android.code_check.model.ServerResponse
 import jp.co.yumemi.android.code_check.network.GithubApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -19,16 +20,36 @@ class GithubRepository @Inject constructor(
      */
     suspend fun getGitHutAccountsFromDataSource(searchQuery: String): ServerResponse? {
         return withContext(Dispatchers.IO) {
-            return@withContext getResponseFromRemoteService(searchQuery)
+
+            val serverResponse = getResponseFromRemoteService(searchQuery)
+
+            if (serverResponse != null) {
+                Timber.d("Received a successful server response")
+            } else {
+                Timber.e("Received an unsuccessful server response")
+
+            }
+
+            return@withContext serverResponse
+
         }
     }
 
     private suspend fun getResponseFromRemoteService(searchQuery: String): ServerResponse? {
         val response = githubApiService.getRepositories(searchQuery)
-        if (response.isSuccessful) {
-            return response.body()
+        return if (response.isSuccessful) {
+
+            val responseBody = response.body()
+            Timber.d("Received a successful response from remote service: $responseBody")
+            response.body()
+
+        } else {
+
+            Timber.e("Received an unsuccessful response from remote service. HTTP Code: ${response.code()}")
+            null
+            
         }
-        return null
+
     }
 
 }
