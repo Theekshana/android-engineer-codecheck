@@ -47,7 +47,7 @@ class GithubRepository @Inject constructor(
 
             Timber.e("Received an unsuccessful response from remote service. HTTP Code: ${response.code()}")
             null
-            
+
         }
 
     }
