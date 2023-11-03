@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.views
+package jp.co.yumemi.android.code_check.views.search
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

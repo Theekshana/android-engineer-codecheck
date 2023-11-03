@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.views
+package jp.co.yumemi.android.code_check.views.search
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import jp.co.yumemi.android.code_check.databinding.RepoListFragmentBinding
 import jp.co.yumemi.android.code_check.model.GitHubAccounts
 import jp.co.yumemi.android.code_check.util.GitHubAccountAdapter
+
 
 /**
  * Fragment for searching and displaying GitHub repositories.
@@ -68,8 +69,7 @@ class RepositorySearchFragment : Fragment() {
     //Navigate to the RepositoryFragment
     fun navigateToRepositoryFragment(item: GitHubAccounts) {
         val action =
-            RepositorySearchFragmentDirections
-                .actionRepositoriesFragmentToRepositoryFragment(item)
+            RepositorySearchFragmentDirections.actionRepositoriesFragmentToRepositoryFragment(item)
         findNavController()
             .navigate(action)
     }

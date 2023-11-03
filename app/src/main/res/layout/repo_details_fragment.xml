@@ -3,11 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="item"
+            type="jp.co.yumemi.android.code_check.views.repositoryDetails.RepositoryDetailsViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <ImageView
             android:id="@+id/ownerIconView"
@@ -29,6 +33,7 @@
             android:layout_marginStart="@dimen/layout_marginStart"
             android:layout_marginTop="@dimen/layout_marginTop"
             android:layout_marginEnd="@dimen/layout_marginEnd"
+            android:text="@{item.repositoryList.name}"
             android:hint="@string/nameview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,6 +46,7 @@
             android:layout_marginStart="@dimen/layout_marginStart"
             android:layout_marginTop="@dimen/layout_marginTop"
             android:layout_marginEnd="@dimen/layout_marginEnd"
+            android:text="@{item.repositoryList.language}"
             android:hint="@string/languageview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,6 +59,7 @@
             android:layout_marginStart="@dimen/layout_marginStart"
             android:layout_marginTop="@dimen/layout_marginTop"
             android:layout_marginEnd="@dimen/layout_marginEnd"
+            android:text="@{item.repositoryList.stargazersCount.toString()}"
             android:hint="@string/startsview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -65,6 +72,7 @@
             android:layout_marginStart="@dimen/layout_marginStart"
             android:layout_marginTop="@dimen/layout_marginTop"
             android:layout_marginEnd="@dimen/layout_marginEnd"
+            android:text="@{item.repositoryList.watchersCount.toString()}"
             android:hint="@string/watchersview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -77,6 +85,7 @@
             android:layout_marginStart="@dimen/layout_marginStart"
             android:layout_marginTop="@dimen/layout_marginTop"
             android:layout_marginEnd="@dimen/layout_marginEnd"
+            android:text="@{item.repositoryList.forksCount.toString()}"
             android:hint="@string/forksview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -89,11 +98,11 @@
             android:layout_marginStart="@dimen/layout_marginStart"
             android:layout_marginTop="@dimen/layout_marginTop"
             android:layout_marginEnd="@dimen/layout_marginEnd"
+            android:text="@{item.repositoryList.forksCount.toString()}"
             android:hint="@string/openIssuesView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/forksView" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

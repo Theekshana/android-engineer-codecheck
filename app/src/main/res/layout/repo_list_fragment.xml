@@ -7,7 +7,7 @@
 
         <variable
             name="githubVM"
-            type="jp.co.yumemi.android.code_check.views.SearchRepositoryViewModel" />
+            type="jp.co.yumemi.android.code_check.views.search.SearchRepositoryViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
