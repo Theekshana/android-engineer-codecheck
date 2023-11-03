@@ -8,7 +8,9 @@ import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import jp.co.yumemi.android.code_check.common.EmptySearchDialogFragment
 import jp.co.yumemi.android.code_check.common.NetworkUtils
+import jp.co.yumemi.android.code_check.common.NoInternetErrorDialogFragment
 import jp.co.yumemi.android.code_check.common.hideKeyboard
 import jp.co.yumemi.android.code_check.databinding.RepoListFragmentBinding
 import jp.co.yumemi.android.code_check.model.GitHubAccounts
@@ -47,11 +49,15 @@ class RepositorySearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Initialize the GitHub account adapter and observe the data
         initGitHubAccountAdapter()
         observeGitHubList()
 
     }
 
+    /**
+     * Observes the GitHub account list and handles different UI states.
+     */
     private fun observeGitHubList() {
         viewModel.gitHubList.observe(viewLifecycleOwner) { uiState ->
             when (uiState) {
@@ -66,7 +72,7 @@ class RepositorySearchFragment : Fragment() {
                 }
 
                 is UIState.Error -> {
-
+                    showNoInternetErrorDialog()
                     Timber.d("Error message: ${uiState.message}")
 
 
@@ -76,6 +82,11 @@ class RepositorySearchFragment : Fragment() {
         }
     }
 
+    /**
+     * Displays GitHub account data in the RecyclerView.
+     *
+     * @param gitHubAccounts The list of GitHub accounts to display.
+     */
     private fun showGitHubData(gitHubAccounts: List<GitHubAccounts>) {
 
         gitHubAccountAdapter.submitList(gitHubAccounts)
@@ -83,6 +94,9 @@ class RepositorySearchFragment : Fragment() {
 
     }
 
+    /**
+     * Initializes the GitHub account adapter and sets up the search input handling.
+     */
     private fun initGitHubAccountAdapter() {
         gitHubAccountAdapter =
             GitHubAccountAdapter(object : GitHubAccountAdapter.OnItemClickListener {
@@ -95,6 +109,9 @@ class RepositorySearchFragment : Fragment() {
         setupSearchInput()
     }
 
+    /**
+     * Sets up the search input handling, including search button clicks.
+     */
     private fun setupSearchInput() {
 
         //Perform a search using search input text
@@ -111,11 +128,17 @@ class RepositorySearchFragment : Fragment() {
             }
     }
 
+    /**
+     * Performs a search and hides the keyboard.
+     *
+     * @param userInput The search input from the user.
+     */
     private fun performSearchAndHideKeyboard(userInput: String) {
 
         hideKeyboard(binding.searchInputText)
 
         if (!NetworkUtils.hasInternetConnection(requireContext())) {
+            showNoInternetErrorDialog()
             return
         }
 
@@ -127,11 +150,32 @@ class RepositorySearchFragment : Fragment() {
         } else {
 
             gitHubAccountAdapter.submitList(emptyList())
+            showEmptySearchDialogFragment()
 
         }
     }
 
-    //Navigate to the RepositoryFragment
+    /**
+     * Displays a dialog for no internet connection.
+     */
+    private fun showNoInternetErrorDialog() {
+        val dialogFragment = NoInternetErrorDialogFragment()
+        dialogFragment.show(childFragmentManager, "noInternetErrorDialog")
+    }
+
+    /**
+     * Displays a dialog for empty search input.
+     */
+    private fun showEmptySearchDialogFragment() {
+        val emptySearch = EmptySearchDialogFragment()
+        emptySearch.show(childFragmentManager, "EmptySearchDialog")
+    }
+
+    /**
+     * Navigates to the RepositoryFragment with the selected GitHub account item.
+     *
+     * @param item The selected GitHub account to display.
+     */
     fun navigateToRepositoryFragment(item: GitHubAccounts) {
         val action =
             RepositorySearchFragmentDirections.actionRepositoriesFragmentToRepositoryFragment(item)
