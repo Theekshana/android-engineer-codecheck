@@ -1,13 +1,11 @@
 package jp.co.yumemi.android.code_check.util
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import jp.co.yumemi.android.code_check.R
+import jp.co.yumemi.android.code_check.databinding.RepositoryListItemBinding
 import jp.co.yumemi.android.code_check.model.GitHubAccounts
 
 /**
@@ -17,24 +15,28 @@ class GitHubAccountAdapter(
     private val itemClickListener: OnItemClickListener,
 ) : ListAdapter<GitHubAccounts, GitHubAccountAdapter.ViewHolder>(diff_util) {
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
+    inner class ViewHolder(
+        val viewBinding: RepositoryListItemBinding
+    ) : RecyclerView.ViewHolder(viewBinding.root)
 
     interface OnItemClickListener {
         fun itemClick(item: GitHubAccounts)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.repository_list_item, parent, false)
-        return ViewHolder(view)
+        val itemView =
+            RepositoryListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
         val currentItem = getItem(position)
-        (holder.itemView.findViewById<View>(R.id.repositoryNameView) as TextView).text =
-            currentItem.name
+
+        holder.viewBinding.repositoryNameView.text = currentItem.name
         holder.itemView.setOnClickListener {
             itemClickListener.itemClick(currentItem)
+
         }
     }
 
