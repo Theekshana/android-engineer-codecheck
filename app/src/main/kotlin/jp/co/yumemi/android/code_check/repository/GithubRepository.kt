@@ -14,17 +14,17 @@ class GithubRepository @Inject constructor(
 ) {
     /**
      * Get GitHub account information from the data source.
-     * @param q The query string to search for repositories.
+     * @param searchQuery The query string to search for repositories.
      * @return The server response, or null if the request was unsuccessful.
      */
-    suspend fun getGitHutAccountsFromDataSource(q: String): ServerResponse? {
+    suspend fun getGitHutAccountsFromDataSource(searchQuery: String): ServerResponse? {
         return withContext(Dispatchers.IO) {
-            return@withContext getResponseFromRemoteService(q)
+            return@withContext getResponseFromRemoteService(searchQuery)
         }
     }
 
-    private suspend fun getResponseFromRemoteService(q: String): ServerResponse? {
-        val response = githubApiService.getRepositories(q)
+    private suspend fun getResponseFromRemoteService(searchQuery: String): ServerResponse? {
+        val response = githubApiService.getRepositories(searchQuery)
         if (response.isSuccessful) {
             return response.body()
         }

@@ -22,13 +22,13 @@ class SearchRepositoryViewModel @Inject constructor(
 
     /**
      * Perform a search for GitHub repositories
-     * @param q The query string to search for repositories.
+     * @param searchQuery The query string to search for repositories.
      */
-    fun searchGithubRepository(q: String) {
+    fun searchGithubRepository(searchQuery: String) {
 
         viewModelScope.launch {
             val serverResponse: ServerResponse? =
-                githubRepository.getGitHutAccountsFromDataSource(q)
+                githubRepository.getGitHutAccountsFromDataSource(searchQuery)
 
             _gitHubList.value = serverResponse?.items
         }

@@ -8,7 +8,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import jp.co.yumemi.android.code_check.databinding.FragmentOneBinding
+import jp.co.yumemi.android.code_check.databinding.RepoListFragmentBinding
 import jp.co.yumemi.android.code_check.model.GitHubAccounts
 import jp.co.yumemi.android.code_check.util.GitHubAccountAdapter
 
@@ -17,7 +17,7 @@ import jp.co.yumemi.android.code_check.util.GitHubAccountAdapter
  */
 class RepositorySearchFragment : Fragment() {
 
-    private lateinit var binding: FragmentOneBinding
+    private lateinit var binding: RepoListFragmentBinding
     private lateinit var viewModel: SearchRepositoryViewModel
     private lateinit var gitHubAccountAdapter: GitHubAccountAdapter
 
@@ -26,7 +26,7 @@ class RepositorySearchFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentOneBinding.inflate(inflater, container, false)
+        binding = RepoListFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(requireActivity())[SearchRepositoryViewModel::class.java]
         binding.githubVM = viewModel
         binding.lifecycleOwner = this

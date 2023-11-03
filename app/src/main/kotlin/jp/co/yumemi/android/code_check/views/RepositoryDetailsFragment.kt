@@ -10,14 +10,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import coil.load
-import jp.co.yumemi.android.code_check.databinding.FragmentTwoBinding
+import jp.co.yumemi.android.code_check.databinding.RepoDetailsFragmentBinding
 
 /**
  * Fragment for displaying details of a GitHub repository.
  */
 class RepositoryDetailsFragment : Fragment() {
 
-    private lateinit var binding: FragmentTwoBinding
+    private lateinit var binding: RepoDetailsFragmentBinding
     private val args: RepositoryDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -25,7 +25,7 @@ class RepositoryDetailsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentTwoBinding.inflate(inflater, container, false)
+        binding = RepoDetailsFragmentBinding.inflate(inflater, container, false)
 
         return binding.root
 
