@@ -7,7 +7,12 @@
     <dimen name="margin_bottom">16dp</dimen>
     <dimen name="layout_marginEnd">24dp</dimen>
     <dimen name="layout_marginStart">24dp</dimen>
-    <dimen name="layout_margin_small">12dp</dimen>
+
+    /* Search */
+    <dimen name="search_layout_margin_small">12dp</dimen>
+    <dimen name="search_card_corner_radius">12dp</dimen>
+    <dimen name="search_card_elevation">14dp</dimen>
+
 
     /* Text size */
     <dimen name="text_size_large">20sp</dimen>

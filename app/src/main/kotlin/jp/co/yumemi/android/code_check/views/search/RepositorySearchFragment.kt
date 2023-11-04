@@ -79,7 +79,7 @@ class RepositorySearchFragment : Fragment() {
                     showNoInternetErrorDialog()
                     Timber.d("Error message: ${uiState.message}")
                     hideProgressBar()
-                    
+
                 }
 
             }
