@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="padding_vertical">16dp</dimen>
-    <dimen name="button_height">48dp</dimen>
-
-    <dimen name="icon_size_medium">24dp</dimen>
-
-    <dimen name="layout_margin_small">12dp</dimen>
-
     /* Margin */
     <dimen name="layout_margin">16dp</dimen>
     <dimen name="layout_marginTop">16dp</dimen>
     <dimen name="margin_bottom">16dp</dimen>
     <dimen name="layout_marginEnd">24dp</dimen>
     <dimen name="layout_marginStart">24dp</dimen>
+    <dimen name="layout_margin_small">12dp</dimen>
 
     /* Text size */
     <dimen name="text_size_large">20sp</dimen>
@@ -32,7 +26,20 @@
     <dimen name="layout_marginHorizontal">16dp</dimen>
     <dimen name="layout_marginVertical">20dp</dimen>
 
+    /* Round shape image */
+    <dimen name="image_layout_marginTop">24dp</dimen>
+    <dimen name="image_layout_marginBottom">8dp</dimen>
+    <dimen name="image_padding">10dp</dimen>
+    <dimen name="stroke_width">0.5dp</dimen>
 
+    /* Card view repo list */
+    <dimen name="repo_layout_width">300dp</dimen>
+    <dimen name="repo_layout_height">60dp</dimen>
+    <dimen name="repo_layout_marginTop">32dp</dimen>
+    <dimen name="repo_layout_marginTop_8dp">8dp</dimen>
+    <dimen name="repo_text_layout_marginTop_8dp">8dp</dimen>
+    <dimen name="repo_text_layout_marginBottom_8dp">8dp</dimen>
+    <dimen name="repo_corner_radius">20dp</dimen>
 
 
 </resources>

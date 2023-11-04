@@ -79,8 +79,7 @@ class RepositorySearchFragment : Fragment() {
                     showNoInternetErrorDialog()
                     Timber.d("Error message: ${uiState.message}")
                     hideProgressBar()
-
-
+                    
                 }
 
             }
@@ -178,14 +177,15 @@ class RepositorySearchFragment : Fragment() {
 
     private fun hideProgressBar() {
         binding.lottieProgressBar.hide()
-        Timber.e("Progress bar")
+
 
     }
 
     private fun showProgressBar() {
-        val lottieProgressBar = binding.lottieProgressBar
-        lottieProgressBar.show()
-        lottieProgressBar.playAnimation()
+        binding.lottieProgressBar.apply {
+            show()
+            playAnimation()
+        }
     }
 
     /**
@@ -198,6 +198,7 @@ class RepositorySearchFragment : Fragment() {
             RepositorySearchFragmentDirections.actionRepositoriesFragmentToRepositoryFragment(item)
         findNavController()
             .navigate(action)
+        Timber.d("Navigated to destination: %s", item)
     }
 
 }
