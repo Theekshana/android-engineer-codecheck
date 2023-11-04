@@ -19,9 +19,9 @@
             android:id="@+id/searchBar"
             android:layout_width="0dp"
             android:layout_height="?attr/actionBarSize"
-            android:layout_margin="@dimen/layout_margin_small"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="8dp"
+            android:layout_margin="@dimen/search_layout_margin_small"
+            app:cardCornerRadius="@dimen/search_card_corner_radius"
+            app:cardElevation="@dimen/search_card_elevation"
             app:layout_constraintBottom_toTopOf="@id/recyclerView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,10 +48,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
+                    android:fontFamily="@font/belleza"
                     android:hint="@string/searchInputText_hint"
                     android:imeOptions="actionSearch"
                     android:inputType="text"
-                    android:textSize="@dimen/text_size_small"
+                    android:textSize="@dimen/text_size_large"
+                    android:textStyle="bold"
                     tools:ignore="VisualLintTextFieldSize" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -67,6 +69,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/searchBar" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/recyclerView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/recyclerView"
+            app:lottie_autoPlay="true"
+            app:lottie_rawRes="@raw/progress_bar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

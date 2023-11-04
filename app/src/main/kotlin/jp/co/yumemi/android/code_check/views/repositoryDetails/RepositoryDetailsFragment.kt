@@ -13,12 +13,17 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.databinding.RepoDetailsFragmentBinding
+import timber.log.Timber
 
 
 /**
  * Fragment for displaying details of a GitHub repository.
  */
 class RepositoryDetailsFragment : Fragment() {
+
+    init {
+        Timber.tag("RepositoryDetailsFragment")
+    }
 
     private lateinit var binding: RepoDetailsFragmentBinding
     private val args: RepositoryDetailsFragmentArgs by navArgs()
@@ -51,7 +56,9 @@ class RepositoryDetailsFragment : Fragment() {
      * Set up the details of the GitHub repository.
      */
     private fun setupRepositoryDetails() {
-        viewModel.loadRepositoryList(args.item)
+        val item = args.item
+        viewModel.loadRepositoryList(item)
+        Timber.d("Item: $item")
     }
 
     /**

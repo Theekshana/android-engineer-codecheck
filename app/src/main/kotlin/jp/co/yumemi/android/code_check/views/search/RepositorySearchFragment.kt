@@ -11,7 +11,9 @@ import androidx.navigation.fragment.findNavController
 import jp.co.yumemi.android.code_check.common.EmptySearchDialogFragment
 import jp.co.yumemi.android.code_check.common.NetworkUtils
 import jp.co.yumemi.android.code_check.common.NoInternetErrorDialogFragment
+import jp.co.yumemi.android.code_check.common.hide
 import jp.co.yumemi.android.code_check.common.hideKeyboard
+import jp.co.yumemi.android.code_check.common.show
 import jp.co.yumemi.android.code_check.databinding.RepoListFragmentBinding
 import jp.co.yumemi.android.code_check.model.GitHubAccounts
 import jp.co.yumemi.android.code_check.model.UIState
@@ -62,19 +64,21 @@ class RepositorySearchFragment : Fragment() {
         viewModel.gitHubList.observe(viewLifecycleOwner) { uiState ->
             when (uiState) {
                 is UIState.Success -> {
-
+                    hideProgressBar()
                     showGitHubData(uiState.data)
 
                 }
 
                 is UIState.Loading -> {
 
+                    showProgressBar()
+
                 }
 
                 is UIState.Error -> {
                     showNoInternetErrorDialog()
                     Timber.d("Error message: ${uiState.message}")
-
+                    hideProgressBar()
 
                 }
 
@@ -171,6 +175,19 @@ class RepositorySearchFragment : Fragment() {
         emptySearch.show(childFragmentManager, "EmptySearchDialog")
     }
 
+    private fun hideProgressBar() {
+        binding.lottieProgressBar.hide()
+
+
+    }
+
+    private fun showProgressBar() {
+        binding.lottieProgressBar.apply {
+            show()
+            playAnimation()
+        }
+    }
+
     /**
      * Navigates to the RepositoryFragment with the selected GitHub account item.
      *
@@ -181,6 +198,7 @@ class RepositorySearchFragment : Fragment() {
             RepositorySearchFragmentDirections.actionRepositoriesFragmentToRepositoryFragment(item)
         findNavController()
             .navigate(action)
+        Timber.d("Navigated to destination: %s", item)
     }
 
 }

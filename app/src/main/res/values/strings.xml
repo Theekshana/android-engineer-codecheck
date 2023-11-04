@@ -1,24 +1,14 @@
 <resources>
     <string name="app_name">Android Engineer CodeCheck</string>
     <string name="searchInputText_hint">GitHub のリポジトリを検索できるよー</string>
-    <string name="written_language">Written in %s</string>
-    <string name="jetbrains_kotlin">JetBrains/kotlin</string>
-    <string name="written_in_kotlin">Written in Kotlin</string>
-    <string name="_38530_stars">38530 stars</string>
-    <string name="_38530_watchers">38530 watchers</string>
-    <string name="_4675_forks">4675 forks</string>
-    <string name="_131_open_issues">131 open issues</string>
-    <string name="nameview">nameView</string>
-    <string name="languageview">languageView</string>
-    <string name="startsview">startsView</string>
-    <string name="forksview">forksView</string>
-    <string name="watchersview">watchersView</string>
-    <string name="openIssuesView">openIssuesView</string>
-
     <string name="no_internet_connection">No Internet Connection</string>
     <string name="make_sure_internet">Make sure WI-FI or mobile data is turned \non, then try again</string>
     <string name="retry">Retry</string>
     <string name="todo">TODO</string>
     <string name="user_input_invalid">User Input Invalid</string>
     <string name="ok">OK</string>
+    <string name="stars">Stars</string>
+    <string name="watchers">Watchers</string>
+    <string name="forks">forks</string>
+    <string name="open_issues">open Issues</string>
 </resources>
