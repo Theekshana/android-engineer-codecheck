@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="jp.co.yumemi.android.code_check.views.repositoryDetails.RepositoryDetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ownerIconView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/image_layout_marginTop"
+            android:layout_marginBottom="@dimen/image_layout_marginBottom"
+            android:padding="@dimen/image_padding"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toTopOf="@+id/centerHorizontalCenterGuide"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:shapeAppearanceOverlay="@style/roundedImage"
+            app:strokeColor="@color/black"
+            app:strokeWidth="@dimen/stroke_width"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/centerHorizontalCenterGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.35" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="@dimen/repo_layout_width"
+            android:layout_height="@dimen/repo_layout_height"
+            android:layout_marginTop="@dimen/repo_layout_marginTop"
+            app:cardCornerRadius="@dimen/repo_corner_radius"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ownerIconView">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/nameView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/repo_layout_marginTop_8dp"
+                    android:fontFamily="@font/belleza"
+                    android:gravity="center"
+                    android:text="@{item.repositoryList.name}"
+                    android:textSize="@dimen/text_size_large"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/languageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/repo_layout_marginTop_8dp"
+                    android:layout_marginBottom="@dimen/repo_text_layout_marginBottom_8dp"
+                    android:fontFamily="@font/belleza"
+                    android:text="@{`Language: ` + item.repositoryList.language}"
+                    android:textSize="@dimen/text_size_large"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/nameView"
+                    app:layout_constraintStart_toStartOf="@+id/nameView"
+                    app:layout_constraintTop_toBottomOf="@+id/nameView" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="@dimen/repo_layout_width"
+            android:layout_height="@dimen/repo_layout_height"
+            android:layout_marginTop="@dimen/repo_layout_marginTop_8dp"
+            app:cardCornerRadius="@dimen/repo_corner_radius"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="79dp"
+                tools:ignore="VisualLintBounds">
+
+                <TextView
+                    android:id="@+id/txtStarsView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/repo_layout_marginTop_8dp"
+                    android:text="@string/stars"
+                    android:textSize="@dimen/text_size_large"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/starsView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/repo_layout_marginTop_8dp"
+                    android:layout_marginBottom="@dimen/repo_text_layout_marginBottom_8dp"
+                    android:fontFamily="@font/belleza"
+                    android:gravity="center"
+                    android:text="@{item.repositoryList.stargazersCount.toString()}"
+                    android:textSize="@dimen/text_size_small"
+                    app:layout_constraintEnd_toEndOf="@+id/txtStarsView"
+                    app:layout_constraintStart_toStartOf="@+id/txtStarsView"
+                    app:layout_constraintTop_toBottomOf="@+id/txtStarsView" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView3"
+            android:layout_width="@dimen/repo_layout_width"
+            android:layout_height="@dimen/repo_layout_height"
+            android:layout_marginTop="@dimen/repo_layout_marginTop_8dp"
+            app:cardCornerRadius="@dimen/repo_corner_radius"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="79dp"
+                tools:ignore="VisualLintBounds">
+
+                <TextView
+                    android:id="@+id/txtWatchersView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/repo_text_layout_marginTop_8dp"
+                    android:text="@string/watchers"
+                    android:textSize="@dimen/text_size_large"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/watchersCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/repo_text_layout_marginTop_8dp"
+                    android:layout_marginBottom="@dimen/repo_text_layout_marginBottom_8dp"
+                    android:fontFamily="@font/belleza"
+                    android:gravity="center"
+                    android:text="@{item.repositoryList.watchersCount.toString()}"
+                    android:textSize="@dimen/text_size_small"
+                    app:layout_constraintEnd_toEndOf="@+id/txtWatchersView"
+                    app:layout_constraintStart_toStartOf="@+id/txtWatchersView"
+                    app:layout_constraintTop_toBottomOf="@+id/txtWatchersView" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView4"
+            android:layout_width="@dimen/repo_layout_width"
+            android:layout_height="@dimen/repo_layout_height"
+            android:layout_marginTop="@dimen/repo_layout_marginTop_8dp"
+            app:cardCornerRadius="@dimen/repo_corner_radius"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView3">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="79dp"
+                tools:ignore="VisualLintBounds">
+
+                <TextView
+                    android:id="@+id/txtForksView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/repo_text_layout_marginTop_8dp"
+                    android:fontFamily="@font/belleza"
+                    android:text="@string/forks"
+                    android:textSize="@dimen/text_size_large"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/forksView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/repo_text_layout_marginTop_8dp"
+                    android:layout_marginBottom="@dimen/repo_text_layout_marginBottom_8dp"
+                    android:fontFamily="@font/belleza"
+                    android:gravity="center"
+                    android:text="@{item.repositoryList.forksCount.toString()}"
+                    android:textSize="@dimen/text_size_small"
+                    app:layout_constraintEnd_toEndOf="@+id/txtForksView"
+                    app:layout_constraintStart_toStartOf="@+id/txtForksView"
+                    app:layout_constraintTop_toBottomOf="@+id/txtForksView" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="@dimen/repo_layout_width"
+            android:layout_height="@dimen/repo_layout_height"
+            android:layout_marginTop="@dimen/repo_layout_marginTop_8dp"
+            app:cardCornerRadius="@dimen/repo_corner_radius"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView4">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="79dp"
+                tools:ignore="VisualLintBounds">
+
+                <TextView
+                    android:id="@+id/txtOpenIssuesView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/repo_text_layout_marginTop_8dp"
+                    android:fontFamily="@font/belleza"
+                    android:text="@string/open_issues"
+                    android:textSize="@dimen/text_size_large"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/openIssuesView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/repo_text_layout_marginTop_8dp"
+                    android:layout_marginBottom="@dimen/repo_text_layout_marginBottom_8dp"
+                    android:fontFamily="@font/belleza"
+                    android:gravity="center"
+                    android:text="@{item.repositoryList.openIssuesCount.toString()}"
+                    android:textSize="@dimen/text_size_small"
+                    app:layout_constraintEnd_toEndOf="@+id/txtOpenIssuesView"
+                    app:layout_constraintStart_toStartOf="@+id/txtOpenIssuesView"
+                    app:layout_constraintTop_toBottomOf="@+id/txtOpenIssuesView" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
