@@ -30,7 +30,7 @@ class RepositorySearchFragment : Fragment() {
         Timber.tag("SearchFragment")
     }
 
-    private lateinit var binding: RepoListFragmentBinding
+    private var binding: RepoListFragmentBinding? = null
     private lateinit var viewModel: SearchRepositoryViewModel
     private lateinit var gitHubAccountAdapter: GitHubAccountAdapter
 
@@ -38,13 +38,13 @@ class RepositorySearchFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = RepoListFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(requireActivity())[SearchRepositoryViewModel::class.java]
-        binding.githubVM = viewModel
-        binding.lifecycleOwner = this
+        binding?.githubVM = viewModel
+        binding?.lifecycleOwner = this
 
-        return binding.root
+        return binding?.root
 
     }
 
@@ -79,9 +79,11 @@ class RepositorySearchFragment : Fragment() {
                     showNoInternetErrorDialog()
                     Timber.d("Error message: ${uiState.message}")
                     hideProgressBar()
-
                 }
 
+                else -> {
+                    // Handle any additional UIState types here or document the purpose of this block
+                }
             }
         }
     }
@@ -109,7 +111,7 @@ class RepositorySearchFragment : Fragment() {
                 }
             })
 
-        binding.recyclerView.adapter = gitHubAccountAdapter
+        binding?.recyclerView?.adapter = gitHubAccountAdapter
         setupSearchInput()
     }
 
@@ -119,8 +121,8 @@ class RepositorySearchFragment : Fragment() {
     private fun setupSearchInput() {
 
         //Perform a search using search input text
-        binding.searchInputText
-            .setOnEditorActionListener { editText, action, _ ->
+        binding?.searchInputText
+            ?.setOnEditorActionListener { editText, action, _ ->
                 if (action == EditorInfo.IME_ACTION_SEARCH) {
                     val userInput = editText.text.toString().trim()
 
@@ -139,7 +141,7 @@ class RepositorySearchFragment : Fragment() {
      */
     private fun performSearchAndHideKeyboard(userInput: String) {
 
-        hideKeyboard(binding.searchInputText)
+        binding?.searchInputText?.let { hideKeyboard(it) }
 
         if (!NetworkUtils.hasInternetConnection(requireContext())) {
             showNoInternetErrorDialog()
@@ -155,7 +157,6 @@ class RepositorySearchFragment : Fragment() {
 
             gitHubAccountAdapter.submitList(emptyList())
             showEmptySearchDialogFragment()
-
         }
     }
 
@@ -176,16 +177,13 @@ class RepositorySearchFragment : Fragment() {
     }
 
     private fun hideProgressBar() {
-        binding.lottieProgressBar.hide()
-
-
+        binding?.lottieProgressBar?.hide()
     }
 
     private fun showProgressBar() {
-        binding.lottieProgressBar.apply {
-            show()
-            playAnimation()
-        }
+        val lottieProgressBar = binding?.lottieProgressBar
+        lottieProgressBar?.show()
+        lottieProgressBar?.playAnimation()
     }
 
     /**
@@ -199,6 +197,11 @@ class RepositorySearchFragment : Fragment() {
         findNavController()
             .navigate(action)
         Timber.d("Navigated to destination: %s", item)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 
 }

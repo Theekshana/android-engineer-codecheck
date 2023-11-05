@@ -31,7 +31,6 @@ class GithubRepository @Inject constructor(
             }
 
             return@withContext serverResponse
-
         }
     }
 
@@ -42,12 +41,10 @@ class GithubRepository @Inject constructor(
             val responseBody = response.body()
             Timber.d("Received a successful response from remote service: $responseBody")
             response.body()
-
         } else {
 
             Timber.e("Received an unsuccessful response from remote service. HTTP Code: ${response.code()}")
             null
-
         }
 
     }

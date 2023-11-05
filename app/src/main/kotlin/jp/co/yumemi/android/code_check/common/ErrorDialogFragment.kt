@@ -11,7 +11,6 @@ import jp.co.yumemi.android.code_check.R
 /**
  * A DialogFragment to display an error dialog.
  */
-
 class NoInternetErrorDialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

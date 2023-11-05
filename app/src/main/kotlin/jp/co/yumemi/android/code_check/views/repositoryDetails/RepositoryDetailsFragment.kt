@@ -25,7 +25,7 @@ class RepositoryDetailsFragment : Fragment() {
         Timber.tag("RepositoryDetailsFragment")
     }
 
-    private lateinit var binding: RepoDetailsFragmentBinding
+    private var binding: RepoDetailsFragmentBinding? = null
     private val args: RepositoryDetailsFragmentArgs by navArgs()
     private lateinit var viewModel: RepositoryDetailsViewModel
 
@@ -33,14 +33,14 @@ class RepositoryDetailsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = RepoDetailsFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this)[RepositoryDetailsViewModel::class.java]
 
-        binding.item = viewModel
-        binding.lifecycleOwner = this
+        binding?.item = viewModel
+        binding?.lifecycleOwner = this
 
-        return binding.root
+        return binding?.root
 
     }
 
@@ -69,15 +69,24 @@ class RepositoryDetailsFragment : Fragment() {
             imageResult?.let {
                 val imageUrl = it.owner?.avatarUrl
                 if (!imageUrl.isNullOrBlank()) {
-                    Glide.with(this)
-                        .load(imageUrl)
-                        .into(binding.ownerIconView)
+                    binding?.ownerIconView?.let { it1 ->
+                        Glide.with(this)
+                            .load(imageUrl)
+                            .into(it1)
+                    }
                 } else {
-                    Glide.with(this)
-                        .load(R.drawable.ic_image_placeholder)
-                        .into(binding.ownerIconView)
+                    binding?.ownerIconView?.let { it1 ->
+                        Glide.with(this)
+                            .load(R.drawable.ic_image_placeholder)
+                            .into(it1)
+                    }
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }
