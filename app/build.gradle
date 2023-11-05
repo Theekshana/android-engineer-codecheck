@@ -16,6 +16,7 @@ android {
     defaultConfig {
         applicationId "jp.co.yumemi.android.codecheck"
         minSdk 23
+        //noinspection OldTargetApi
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -79,5 +80,13 @@ dependencies {
 
     //  ———  Lottie ——— ++
     implementation 'com.airbnb.android:lottie:3.5.0'
+
+    //  ———  Testing ——— ++
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation "androidx.arch.core:core-testing:2.2.0"
+
+    //  ———  Mockito  ——— ++
+    testImplementation 'org.mockito:mockito-core:4.0.0'
+    androidTestImplementation 'org.mockito:mockito-android:4.0.0'
 
 }

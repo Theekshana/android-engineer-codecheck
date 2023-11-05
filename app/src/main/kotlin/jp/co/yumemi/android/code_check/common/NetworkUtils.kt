@@ -4,6 +4,10 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 
+/**
+ * Checks if the device has an active internet connection.
+ * This function uses the Android Connectivity Manager to determine the network state.
+ */
 object NetworkUtils {
 
     fun hasInternetConnection(context: Context): Boolean {
